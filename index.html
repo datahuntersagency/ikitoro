@@ -207,6 +207,40 @@ section{padding-block:clamp(96px,13vw,180px)}
 .head2 p{grid-column:9/13;color:var(--ash)}
 @media (max-width:860px){.head2 .t,.head2 p{grid-column:1/-1}}
 
+/* MENUS */
+.menus{border-top:1px solid var(--hair)}
+.menu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:clamp(48px,6vw,80px)}
+.menu-card{appearance:none;background:var(--lacquer);border:1px solid var(--hair);padding:0;color:inherit;text-align:left;cursor:pointer;display:flex;flex-direction:column;transition:border-color .4s,transform .6s cubic-bezier(.2,.6,.2,1);font:inherit;min-width:0}
+.menu-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.menu-card .thumb{position:relative;aspect-ratio:3/4;overflow:hidden;background:#f4f1ec;max-width:100%}
+.menu-card .thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform 1.2s cubic-bezier(.2,.6,.2,1)}
+.menu-card:hover .thumb img{transform:scale(1.03)}
+.menu-card .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 52%,rgba(10,9,8,.88))}
+.menu-card .thumb .open{position:absolute;left:14px;bottom:14px;z-index:1;font-family:var(--f-mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--washi)}
+.menu-card .body{padding:22px 20px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.menu-card .jp{font-size:13px;letter-spacing:.4em;color:var(--gold)}
+.menu-card h3{font-size:26px}
+.menu-card p{color:var(--ash);font-size:14.5px;line-height:1.65}
+.menu-card .meta{margin-top:auto;padding-top:14px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash)}
+@media (max-width:1000px){.menu-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.menu-grid{grid-template-columns:1fr 1fr;gap:10px}.menu-card .body{padding:16px 14px 18px}.menu-card h3{font-size:20px}.menu-card p{display:none}}
+.viewer{border:0;padding:0;margin:0;width:100%;max-width:none;height:100%;max-height:none;background:rgba(10,9,8,.97);color:var(--washi)}
+.viewer::backdrop{background:rgba(10,9,8,.8);backdrop-filter:blur(8px)}
+.viewer[open]{display:flex;flex-direction:column}
+.viewer-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:calc(12px + env(safe-area-inset-top,0px)) max(16px, env(safe-area-inset-right,0px)) 12px max(16px, env(safe-area-inset-left,0px));border-bottom:1px solid var(--hair);flex-wrap:wrap}
+.viewer-tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;min-width:0}
+.viewer-tabs::-webkit-scrollbar{display:none}
+.viewer-tabs button{appearance:none;background:none;border:1px solid transparent;color:var(--ash);font:400 11px/1 var(--f-mono);letter-spacing:.2em;text-transform:uppercase;padding:11px 14px;cursor:pointer;white-space:nowrap}
+.viewer-tabs button[aria-selected="true"]{border-color:var(--gold);color:var(--gold-hi)}
+.viewer-acts{display:flex;gap:8px;align-items:center}
+.viewer-x{appearance:none;width:42px;height:42px;border:1px solid var(--hair);background:none;color:var(--washi);font:200 26px/1 var(--f-display);cursor:pointer}
+.viewer-x:hover{border-color:var(--gold);color:var(--gold-hi)}
+.viewer-title{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.viewer-pages{flex:1;overflow-y:auto;padding:28px max(12px, env(safe-area-inset-left,0px)) calc(48px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:22px;outline:none}
+.viewer-pages figure{margin:0;width:min(100%,860px);display:flex;flex-direction:column;gap:10px}
+.viewer-pages img{width:100%;height:auto;display:block;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.viewer-pages figcaption{font-family:var(--f-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ash);text-align:center}
+@media (max-width:640px){.viewer-acts #viewerDl{display:none}}
 /* LUNCH */
 .lunch{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:center}
 .lunch .big{grid-column:1/6;font-family:var(--f-display);font-weight:200;font-size:clamp(110px,16vw,230px);line-height:.8;color:var(--gold-hi);font-variant-numeric:lining-nums;display:flex;align-items:flex-start;gap:14px}
@@ -305,11 +339,11 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
 
 <header class="nav">
   <div class="wrap nav-in">
-    <nav class="nav-l" aria-label="Primary"><a class="t" href="#omakase">Sunset Omakase</a><a class="t" href="#cellar">The Cellar</a><a class="t" href="#cuisine">Cuisine</a></nav>
+    <nav class="nav-l" aria-label="Primary"><a class="t" href="#omakase">Sunset Omakase</a><a class="t" href="#menus">Menus</a><a class="t" href="#cellar">The Cellar</a></nav>
     <a class="nav-logo" href="#top" aria-label="Iki Toro"><img src="/assets/iki-toro-logo.webp" alt="Iki Toro"></a>
     <div class="nav-r"><a class="t" href="#private">Events</a><a class="t" href="#journal">Journal</a><a class="btn" href="#visit">Reserve</a></div>
   </div>
-  <div class="nav-m"><div class="wrap"><a href="#omakase">Omakase</a><a href="#cellar">Cellar</a><a href="#cuisine">Cuisine</a><a href="#lunch">Lunch</a><a href="#private">Events</a><a href="#journal">Journal</a><a href="#visit">Visit</a></div></div>
+  <div class="nav-m"><div class="wrap"><a href="#omakase">Omakase</a><a href="#menus">Menus</a><a href="#cellar">Cellar</a><a href="#cuisine">Cuisine</a><a href="#lunch">Lunch</a><a href="#private">Events</a><a href="#journal">Journal</a><a href="#visit">Visit</a></div></div>
 </header>
 
 <main id="top">
@@ -372,7 +406,7 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
             <span class="kicker">Daily · 5:00 to 6:00 pm</span>
             <h3>The chef decides. <em>You simply arrive.</em></h3>
             <p>The menu follows the morning's catch and the season. Seating is limited to the counter, so every guest is served directly by the chef.</p>
-            <p>Ask about a sake or Japanese whisky pairing from the cellar. Please share allergies when you book.</p>
+            <p>Ask about a sake or Japanese whisky pairing from the cellar, or a premium sake flight. Please share allergies when you book.</p>
             <div class="tracker" aria-live="polite">
               <div class="tracker-top"><b id="sunState">—</b><span id="sunClock">—</span></div>
               <div class="bar" aria-hidden="true"><i id="sunFill"></i><s id="sunKnob"></s></div>
@@ -384,7 +418,7 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
             <ol class="courses">
               <li><span class="jp">先</span><div><b>Sakizuke</b><small>A first bite: yellowtail crudo, orange, citrus soy</small></div></li>
               <li><span class="jp">刺</span><div><b>Sashimi</b><small>Madai and kanpachi, fresh wasabi</small></div></li>
-              <li><span class="jp">握</span><div><b>Nigiri</b><small>Hokkaido scallop, kinmedai, akami</small></div></li>
+              <li><span class="jp">握</span><div><b>Nigiri</b><small>Hokkaido scallop, hamachi toro, akami</small></div></li>
               <li><span class="jp">極</span><div><b>Toro</b><small>Bluefin belly, the height of the hour</small></div></li>
               <li><span class="jp">炉</span><div><b>Robata</b><small>Chilean seabass from the charcoal</small></div></li>
               <li><span class="jp">甘</span><div><b>Kanmi</b><small>Yuzu crème brûlée</small></div></li>
@@ -400,23 +434,25 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
     <div class="wrap">
       <div class="cellar-head">
         <div class="t"><span class="kicker">The Cellar · 酒蔵</span><h2>A library of <em>Japanese spirits.</em></h2></div>
-        <p>Single malts from Yamazaki and Hakushu, the full Hibiki line, small distilleries from Shinshu to Akashi, and sake from junmai daiginjo to ten-year aged yamahai.</p>
+        <p>Single malts from Yamazaki and Hakushu, the Hibiki line through 21 years, small distilleries from Mt. Fuji to Okinawa, fine cognac, and sake from junmai daiginjo to ten-year aged yamahai.</p>
       </div>
       <div class="rare">
-        <div><span>Suntory · Blended</span><span class="age">21<small>YR</small></span><b>Hibiki 21</b><span>By the pour · $180</span></div>
-        <div><span>Suntory · Single malt</span><span class="age">18<small>YR</small></span><b>Yamazaki 18</b><span>By the pour · $120</span></div>
-        <div><span>Matsui Shuzo · Tottori</span><span class="age">18<small>YR</small></span><b>Kurayoshi 18</b><span>Ask your server</span></div>
+        <div><span>Suntory · Blended</span><span class="age">21<small>YR</small></span><b>Hibiki 21</b><span>50 ml pour · $180</span></div>
+        <div><span>Suntory · Single malt</span><span class="age">18<small>YR</small></span><b>Yamazaki 18</b><span>50 ml pour · $120</span></div>
+        <div><span>Sake · 1000 ml</span><span class="age">夢</span><b>Born &ldquo;Dreams Come True&rdquo;</b><span>Bottle · $450</span></div>
         <div><span>Daiginjo · Sake</span><span class="age">剣</span><b>KEN Sword Daiginjo</b><span>Bottle · $220</span></div>
       </div>
       <div class="cellar-ui">
         <div class="seg" role="tablist">
           <button role="tab" id="segW" aria-selected="true" data-k="whisky">Whisky<sup id="cW"></sup></button>
           <button role="tab" id="segS" aria-selected="false" data-k="sake">Sake<sup id="cS"></sup></button>
+          <button role="tab" id="segC" aria-selected="false" data-k="cognac">Cognac<sup id="cC"></sup></button>
         </div>
         <div class="filters" id="filters"></div>
       </div>
       <div class="shelf" id="shelf" role="tabpanel"></div>
       <p class="shelf-note" id="shelfNote"></p>
+      <div class="row" style="margin-top:34px"><a class="btn" href="#menu-spirits" data-open-menu="spirits">Full spirits list</a><a class="btn quiet" href="#menu-drinks" data-open-menu="drinks">Drink menu</a></div>
     </div>
   </section>
 
@@ -424,19 +460,42 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
     <div class="wrap">
       <div class="head2">
         <div class="t"><span class="kicker">Cuisine · 料理</span><h2>Sea, flame <em>and season.</em></h2></div>
-        <p>A selection from the dinner menu. The full menu, including crudo, rolls and desserts, is available at the table.</p>
+        <p>Pristine Japanese tradition: premium sushi and the smoky, layered flavors of authentic robata. A few favorites from the food menu.</p>
       </div>
       <div class="cu-grid">
-        <div class="cu"><span class="jp">寿司</span><h3>The sushi counter</h3><p>Nigiri pressed by hand over warm rice, served one piece at a time.</p>
-          <ul><li><span>Toro · bluefin belly</span><span class="lead"></span><span class="p">24</span></li><li><span>Iki Toro special scallop</span><span class="lead"></span><span class="p">24</span></li><li><span>Uni · sea urchin</span><span class="lead"></span><span class="p">20</span></li><li><span>Kinmedai · golden eye snapper</span><span class="lead"></span><span class="p">16</span></li><li><span>Toro flight</span><span class="lead"></span><span class="p">45</span></li></ul></div>
-        <div class="cu"><span class="jp">炉端</span><h3>The robata</h3><p>Skewers grilled slowly over charcoal, seasoned with salt, tare and restraint.</p>
-          <ul><li><span>Lamb chop</span><span class="lead"></span><span class="p">14</span></li><li><span>Chilean seabass</span><span class="lead"></span><span class="p">14</span></li><li><span>Skirt steak</span><span class="lead"></span><span class="p">12</span></li><li><span>Pork belly</span><span class="lead"></span><span class="p">7</span></li><li><span>Shiitake</span><span class="lead"></span><span class="p">5</span></li></ul></div>
+        <div class="cu"><span class="jp">寿司</span><h3>The sushi counter</h3><p>Two pieces per order, hand-pressed over seasoned sushi rice.</p>
+          <ul><li><span>Scallop Hokkaido · Iki Toro Special</span><span class="lead"></span><span class="p">25</span></li><li><span>Toro · bluefin tuna belly</span><span class="lead"></span><span class="p">24</span></li><li><span>Uni · sea urchin</span><span class="lead"></span><span class="p">20</span></li><li><span>Hamachi Toro · yellowtail belly</span><span class="lead"></span><span class="p">14</span></li><li><span>Bluefin Tuna Toro Flight</span><span class="lead"></span><span class="p">45</span></li></ul></div>
+        <div class="cu"><span class="jp">炉端</span><h3>The robata</h3><p>Grilled over authentic Japanese binchotan, the purest charcoal, for a clean, mineral finish.</p>
+          <ul><li><span>Australian lamb chop</span><span class="lead"></span><span class="p">14</span></li><li><span>Chilean sea bass</span><span class="lead"></span><span class="p">14</span></li><li><span>Wagyu skirt steak</span><span class="lead"></span><span class="p">12</span></li><li><span>Berkshire pork belly</span><span class="lead"></span><span class="p">7</span></li><li><span>Shiitake mushrooms</span><span class="lead"></span><span class="p">5</span></li></ul></div>
         <div class="cu"><span class="jp">特選</span><h3>Signatures</h3><p>The dishes our regulars order before they sit down.</p>
-          <ul><li><span>Imperial roll with caviar</span><span class="lead"></span><span class="p">46</span></li><li><span>Toro sashimi</span><span class="lead"></span><span class="p">48</span></li><li><span>Zesty bluefin tuna roll</span><span class="lead"></span><span class="p">27</span></li><li><span>Bluefin tuna crudo</span><span class="lead"></span><span class="p">25</span></li><li><span>Matcha tiramisu</span><span class="lead"></span><span class="p">16</span></li></ul></div>
+          <ul><li><span>Iki Toro Imperial Roll with caviar</span><span class="lead"></span><span class="p">46</span></li><li><span>Toro sashimi · 5 pieces</span><span class="lead"></span><span class="p">48</span></li><li><span>Salmon caviar crudo</span><span class="lead"></span><span class="p">35</span></li><li><span>Zesty bluefin tuna roll</span><span class="lead"></span><span class="p">27</span></li><li><span>Matcha tiramisu</span><span class="lead"></span><span class="p">16</span></li></ul></div>
       </div>
-      <div class="row" style="justify-content:flex-end;margin-top:48px"><a class="btn quiet" href="https://ikitoro.com/home/#menu" target="_blank" rel="noopener">Full menu</a></div>
+      <div class="row" style="justify-content:flex-end;margin-top:48px"><a class="btn quiet" href="#menus">View all menus</a><a class="btn" href="#menu-food" data-open-menu="food">Food menu</a></div>
     </div>
   </section>
+
+  <section class="menus" id="menus">
+    <div class="wrap">
+      <div class="head2">
+        <div class="t"><span class="kicker">Menus · 品書き</span><h2>Read the <em>menus.</em></h2></div>
+        <p>Our four menus, exactly as they are printed at the table. Open any menu to read it here, or download the PDF.</p>
+      </div>
+      <div class="menu-grid" id="menuGrid"></div>
+    </div>
+  </section>
+
+  <dialog class="viewer" id="menuViewer" aria-labelledby="viewerTitle">
+    <div class="viewer-bar">
+      <div class="viewer-tabs" role="tablist" id="viewerTabs"></div>
+      <div class="viewer-acts">
+        <a class="linkbtn" id="viewerOpen" href="#" target="_blank" rel="noopener">Open PDF</a>
+        <a class="linkbtn" id="viewerDl" href="#" download>Download</a>
+        <button type="button" class="viewer-x" id="viewerClose" aria-label="Close menu">×</button>
+      </div>
+    </div>
+    <h2 class="viewer-title" id="viewerTitle">Menu</h2>
+    <div class="viewer-pages" id="viewerPages" tabindex="0"></div>
+  </dialog>
 
   <section id="lunch">
     <div class="wrap lunch">
@@ -567,30 +626,34 @@ function renderSunset(){const{day,mins,secs}=laNow(),open=!!HOURS[day],h=Math.fl
 
 /* The cellar, from the current Iki Toro bar list */
 const WHISKY=[
- {g:"Suntory",jp:"サントリー",items:[["Hibiki 21","Blended",180],["Hibiki 17","Blended",140],["Hibiki 12","Extra rare blend",110],["Hibiki Harmony","Blended",28],["Yamazaki 18","Single malt",120],["Yamazaki 12","Single malt",38],["Yamazaki","Distiller's blend",29],["Hakushu 18","Single malt",120],["Hakushu 12","Single malt",38],["Toki Black","Blended",23],["Toki","Blended",19]]},
- {g:"Nikka",jp:"ニッカ",items:[["Yoichi","Single malt",34],["Coffey Grain","Coffey still",33],["Days","Blended",28]]},
- {g:"Mars Shinshu",jp:"マルス",items:[["Kisoyama","Blended",38],["Kisoyama Yuhi","Blended","Ask"],["Iwai Tradition","Blended",25],["Mars 45","Blended",20]]},
- {g:"Akashi",jp:"明石",items:[["Eigashima Single Malt","Single malt",30],["Akashi Ume","Plum cask",30],["Akashi White Oak","Blended",28]]},
- {g:"Independent & craft",jp:"蒸留所",items:[["Matsui Kurayoshi 18","Pure malt","Ask"],["Hatozaki 12","Pure malt",38],["Hatozaki Small Batch","Pure malt",33],["Hatozaki Finest","Blended",23],["Kujira 5","Ryukyu rice",38],["Kujira","Ryukyu rice",28],["The Shinobu 10","Mizunara finish",39],["Tenjaku Pure Malt","Pure malt",38],["Tenjaku Blended","Blended",28],["Sentaru 10","Classic reserve",33],["Kaigan","Blended",29],["The Shin Malt 10","Malt",28],["Maen","Blended",28],["Shunka Shuto · Spring","Seasonal",28],["Shunka Shuto · Summer","Seasonal",28],["Shunka Shuto · Autumn","Seasonal",28],["Shunka Shuto · Winter","Seasonal",28],["Kikori","Rice whiskey",18]]},
+ {g:"Suntory",jp:"サントリー",items:[["Hibiki 21","Blended",180],["Hibiki 12","Extra rare blend",110],["Hibiki Harmony","Blended",28],["Yamazaki 18","Single malt",120],["Yamazaki 12","Single malt",38],["Yamazaki Blend","Blended",29],["Hakushu 18","Single malt",120],["Hakushu 12","Single malt",38],["Toki Black","Blended",23],["Toki","Highball blend",19]]},
+ {g:"Nikka",jp:"ニッカ",items:[["Yoichi","Coastal single malt",34],["Coffey Grain","Coffey still",33],["Days","Blended",28]]},
+ {g:"Mars Shinshu",jp:"マルス",items:[["Kisoyama Yuhi","Blended",38],["Kisoyama","Blended",30],["Iwai Tradition","Malt-driven",25],["Mars 45","High proof",20]]},
+ {g:"Independent & craft",jp:"蒸留所",items:[["Yamato Honda Tadakatsu","Mizunara aged",39],["The Shinobu 10","Mizunara aged",39],["Hatozaki 12","Umeshu cask",38],["Kujira 5","Okinawa rice",38],["Tenjaku Pure Malt","Pure malt",38],["Yamazakura Single Malt","Sasakawa",33],["Hatozaki Small Batch","Pure malt",33],["Sentaru 10","Single grain",33],["Kaigan","Maritime blend",29],["Akashi White Oak","Blended",28],["Kujira","Okinawa rice",28],["Maen","Artisan blend",28],["Tenjaku Blended","Blended",28],["The Shin Malt 10","Mizunara finish",28],["Shunka Shuto","Spring · Summer · Autumn · Winter",28],["The Fujisan","Mt. Fuji spring water",23],["Hatozaki Finest","Blended",23],["Kikori","Rice whiskey",18]]},
 ];
 const SAKE=[
- {g:"Junmai Daiginjo",jp:"純米大吟醸",items:[["Dassai 23","720 ml",150],["Dassai 23","300 ml",75],["Dassai 45","720 ml",70],["Dassai 45","300 ml",35],["Shirakabegura","Junmai daiginjo",135],["Hakkaisan","Dodgers edition",85],["Hakushika Sennenju","Junmai daiginjo",80],["Kikusui","Junmai daiginjo",80],["Kubota Manjyu","Junmai daiginjo",80]]},
- {g:"Daiginjo & Ginjo",jp:"大吟醸",items:[["KEN Sword","Daiginjo",220],["Fu Sasanokawa","",80],["Kubota Senjyu","Junmai ginjo",70],["Kikusui Blue","Junmai ginjo",65]]},
- {g:"Aged & traditional",jp:"熟成",items:[["Shirakabegura Yamahai","10 year junmai",180],["MUWA","Bourbon barrel aged",155],["Shirakabegura Kimoto","Matured junmai",145],["Nanbu Bijin","Tokubetsu junmai",75],["Michinoku Onikoroshi","Honjozo, dry",60]]},
- {g:"Nigori & sparkling",jp:"にごり",items:[["Nigori Murai","720 ml",70],["Nigori Sayuri","720 ml",60],["Mio Crisp","Sparkling, 720 ml",50],["Nigori Murai","300 ml",30],["Nigori Sayuri","300 ml",25],["Mio Crisp","Sparkling, 300 ml",25]]},
+ {g:"By the glass",jp:"杯",items:[["Premium Sake Flight","3 × 70 ml",22],["Hot Sake","Premium · 300 ml",18],["House Sake","Premium",14]]},
+ {g:"Prestige",jp:"極上",items:[["Born","Dreams Come True · 1000 ml",450],["KEN Sword","Daiginjo",220]]},
+ {g:"Junmai Daiginjo",jp:"純米大吟醸",items:[["Dassai 23","720 ml",150],["Dassai 23","300 ml",75],["Shirakabegura","Junmai daiginjo",135],["Hakkaisan","Dodgers edition",80],["Hakushika Sennenju","720 ml",80],["Hakushika Sennenju","300 ml",35],["Kubota Manjyu","Junmai daiginjo",80],["Kikusui","Junmai daiginjo",75],["Dassai 45","720 ml",65],["Dassai 45","300 ml",35]]},
+ {g:"Ginjo & Honjozo",jp:"吟醸",items:[["Kubota Senjyu","Junmai ginjo",70],["Kikusui Blue","Junmai ginjo",65],["Michinoku Onikoroshi","Honjozo, dry",60]]},
+ {g:"Aged & traditional",jp:"熟成",items:[["Shirakabegura Yamahai","10 year junmai",180],["Shirakabegura Kimoto","Matured junmai 2017",145],["Nanbu Bijin","Tokubetsu junmai",75]]},
+ {g:"Nigori & sparkling",jp:"にごり",items:[["Nigori Sayuri","720 ml",60],["Mio Crisp","Sparkling, 720 ml",50],["Nigori Sayuri","300 ml",25],["Mio Crisp","Sparkling, 300 ml",25]]},
 ];
-const count=a=>a.reduce((n,g)=>n+g.items.length,0);
+const COGNAC=[
+ {g:"Cognac",jp:"コニャック",items:[["Hennessy Paradis","25 ml pour",120],["Hennessy XO","Extra old",46],["Remy Martin XO","Fine Champagne",46],["Iki Toro House Blend XO Extra","Up to 50 years old",35],["Hennessy VSOP","",19],["Remy Martin 1738","Accord Royal",19],["Tesseron VSOP","Grande & Petite Champagne",19]]},
+];
+const count=a=>new Set(a.flatMap(g=>g.items.map(i=>i[0]))).size;
 let kind="whisky",filter="All";
 function renderCellar(){
-  const data=kind==="whisky"?WHISKY:SAKE;
+  const data=kind==="whisky"?WHISKY:kind==="sake"?SAKE:COGNAC;
   $("filters").innerHTML=["All",...data.map(g=>g.g)].map(f=>`<button type="button" aria-pressed="${f===filter}" data-f="${f}">${f}</button>`).join("");
   const groups=filter==="All"?data:data.filter(g=>g.g===filter);
   $("shelf").innerHTML=groups.map(g=>`<div class="group"><h4><span>${g.g}</span><span class="jp">${g.jp}</span></h4>${g.items.map(([n,s,p])=>`<div class="bottle"><span class="n">${n}${s?`<small>${s}</small>`:""}</span><span class="lead"></span><span class="p">${typeof p==="number"?"$"+p:p}</span></div>`).join("")}</div>`).join("");
-  $("shelfNote").textContent=kind==="whisky"?"Prices per pour · neat, on a single large cube, or as a highball":"Prices per bottle · hot premium junmai also served by the carafe";
-  $("segW").setAttribute("aria-selected",kind==="whisky");$("segS").setAttribute("aria-selected",kind==="sake");
-  $("shelf").setAttribute("aria-labelledby",kind==="whisky"?"segW":"segS");
+  $("shelfNote").textContent=kind==="whisky"?"50 ml pour · neat, on a large cube, or as a highball":kind==="sake"?"Bottle prices unless noted · by the glass and flight listed first":"Per pour · Hennessy Paradis served as a 25 ml pour";
+  $("segW").setAttribute("aria-selected",kind==="whisky");$("segS").setAttribute("aria-selected",kind==="sake");$("segC").setAttribute("aria-selected",kind==="cognac");
+  $("shelf").setAttribute("aria-labelledby",kind==="whisky"?"segW":kind==="sake"?"segS":"segC");
 }
-$("cW").textContent=count(WHISKY);$("cS").textContent=count(SAKE);$("fWhisky").textContent=count(WHISKY);$("fSake").textContent=count(SAKE);
+$("cW").textContent=count(WHISKY);$("cS").textContent=count(SAKE.slice(1));$("cC").textContent=count(COGNAC);$("fWhisky").textContent=count(WHISKY);$("fSake").textContent=count(SAKE.slice(1));
 document.querySelector(".seg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;kind=b.dataset.k;filter="All";renderCellar();});
 $("filters").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;filter=b.dataset.f;renderCellar();});
 
@@ -675,6 +738,35 @@ $("copyPhone").addEventListener("click",function(){const b=this;navigator.clipbo
       const g=ctx.createRadialGradient(x,y,0,x,y,r);const a=b.c.startsWith("139")?.10:.035;g.addColorStop(0,`rgba(${b.c},${a})`);g.addColorStop(1,`rgba(${b.c},0)`);ctx.fillStyle=g;ctx.fillRect(x-r,y-r,r*2,r*2);}
     ctx.globalCompositeOperation="source-over";}
   function loop(){t+=.006;draw();if(!reduce)requestAnimationFrame(loop);}loop();addEventListener("resize",()=>{size();draw();});})();
+
+/* Menus: cards + in-page viewer (page images) with PDF open/download */
+const MENUS=[
+ {id:"food",title:"Food Menu",jp:"料理",desc:"Starters, nigiri and sashimi, crudos, rolls, robata and omakase sets.",pdf:"/menus/iki-toro-food-menu.pdf",pages:["/menus/iki-toro-food-menu-2.webp","/menus/iki-toro-food-menu-1.webp"],w:701,h:1169},
+ {id:"drinks",title:"Drink Menu",jp:"飲物",desc:"Cocktails, mocktails, sake, wine, beer, tea and soft drinks.",pdf:"/menus/iki-toro-drink-menu.pdf",pages:["/menus/iki-toro-drink-menu-1.webp","/menus/iki-toro-drink-menu-2.webp"],w:701,h:1169},
+ {id:"spirits",title:"Spirits List",jp:"洋酒",desc:"Japanese whisky, tequila and mezcal, cognac, vodka, gin and rum.",pdf:"/menus/iki-toro-spirits-list.pdf",pages:["/menus/iki-toro-spirits-list-1.webp","/menus/iki-toro-spirits-list-2.webp"],w:701,h:1169},
+ {id:"after",title:"After Dinner",jp:"甘味",desc:"Desserts, after-dinner cocktails, cognac and coffee.",pdf:"/menus/iki-toro-after-dinner-menu.pdf",pages:["/menus/iki-toro-after-dinner-menu-1.webp"],w:612,h:792},
+];
+$("menuGrid").innerHTML=MENUS.map(m=>`<button type="button" class="menu-card" data-open-menu="${m.id}" aria-label="Open the ${m.title}"><span class="thumb"><img src="/menus/iki-toro-${m.id==="food"?"food-menu":m.id==="drinks"?"drink-menu":m.id==="spirits"?"spirits-list":"after-dinner-menu"}-thumb.webp" alt="" loading="lazy" width="560" height="${Math.round(560*m.h/m.w)}"><span class="open">Open menu →</span></span><span class="body"><span class="jp">${m.jp}</span><h3>${m.title}</h3><p>${m.desc}</p><span class="meta"><span>${m.pages.length} ${m.pages.length>1?"pages":"page"}</span><span>PDF</span></span></span></button>`).join("");
+$("viewerTabs").innerHTML=MENUS.map(m=>`<button type="button" role="tab" data-tab="${m.id}" aria-selected="false">${m.title}</button>`).join("");
+const viewer=$("menuViewer");
+function showMenu(id){
+  const m=MENUS.find(x=>x.id===id)||MENUS[0];
+  $("viewerTitle").textContent="Iki Toro "+m.title;
+  $("viewerOpen").href=m.pdf;$("viewerDl").href=m.pdf;$("viewerDl").setAttribute("download",m.pdf.split("/").pop());
+  $("viewerTabs").querySelectorAll("button").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.tab===m.id)));
+  $("viewerPages").innerHTML=m.pages.map((src,i)=>`<figure><img src="${src}" alt="Iki Toro ${m.title}, page ${i+1} of ${m.pages.length}" width="${m.w*2}" height="${m.h*2}" ${i?'loading="lazy"':''}><figcaption>${m.title} · page ${i+1} of ${m.pages.length}</figcaption></figure>`).join("");
+  $("viewerPages").scrollTop=0;
+  try{history.replaceState(null,"","#menu-"+m.id);}catch(e){}
+}
+function openMenu(id){showMenu(id);if(!viewer.open){viewer.showModal?viewer.showModal():viewer.setAttribute("open","");}document.documentElement.style.overflow="hidden";$("viewerPages").focus({preventScroll:true});}
+function closeMenu(){if(viewer.open)viewer.close();}
+viewer.addEventListener("close",()=>{document.documentElement.style.overflow="";try{if(location.hash.startsWith("#menu-"))history.replaceState(null,"","#menus");}catch(e){}});
+document.addEventListener("click",e=>{const t=e.target.closest("[data-open-menu]");if(t){e.preventDefault();openMenu(t.dataset.openMenu);}});
+$("viewerTabs").addEventListener("click",e=>{const b=e.target.closest("button");if(b)showMenu(b.dataset.tab);});
+$("viewerClose").addEventListener("click",closeMenu);
+viewer.addEventListener("click",e=>{if(e.target===viewer)closeMenu();});
+function fromHash(){const h=location.hash;if(h.startsWith("#menu-")){openMenu(h.slice(6));}}
+addEventListener("hashchange",fromHash);fromHash();
 
 renderHours();renderStatus();renderSunset();renderCellar();renderFeed();setupForm();
 setInterval(()=>{renderStatus();renderSunset();},20000);
