@@ -544,8 +544,9 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
           <div class="field"><label for="evPhone">Phone</label><input id="evPhone" type="tel" autocomplete="tel"></div>
           <div class="field full"><label for="evNotes">Notes</label><textarea id="evNotes" placeholder="Pairings, dietary needs, budget per guest, timing"></textarea></div>
           <p class="err" id="evErr" hidden></p>
-          <div class="form-foot"><button class="btn" type="submit">Send inquiry</button></div>
-          <div class="sent" id="evSent" hidden><span class="kicker">Inquiry prepared</span><pre id="evSummary"></pre><span class="ash" style="font-size:13px">Preview only. On the live site this is delivered to the events team.</span></div>
+          <input type="text" name="_honey" id="evHoney" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+          <div class="form-foot"><button class="btn" type="submit" id="evSubmit">Send inquiry</button></div>
+          <div class="sent" id="evSent" hidden role="status"><span class="kicker" id="evSentTitle">Inquiry sent</span><p id="evSentMsg" style="color:var(--washi)"></p><pre id="evSummary"></pre></div>
         </form>
       </div>
     </div>
@@ -719,14 +720,33 @@ function updateRail(){const r=$("feedGrid"),max=r.scrollWidth-r.clientWidth;
   r.addEventListener("click",e=>{if(moved){e.preventDefault();moved=false;}},true);
 })();
 
-function setupForm(){const f=$("inq"),g=$("evGuests"),d=$("evDate");d.min=new Date().toISOString().slice(0,10);
+/* Events inquiry: delivered by email to the events team via FormSubmit */
+const INQUIRY_EMAIL="yervand@ikitoro.com";
+function setupForm(){const f=$("inq"),g=$("evGuests"),d=$("evDate"),btn=$("evSubmit");d.min=new Date().toISOString().slice(0,10);
   f.querySelectorAll("[data-step]").forEach(b=>b.addEventListener("click",()=>{g.value=Math.min(300,Math.max(8,(+g.value||8)+ +b.dataset.step));}));
-  f.addEventListener("submit",e=>{e.preventDefault();const v=id=>$(id).value.trim(),miss=[];
+  f.addEventListener("submit",async e=>{e.preventDefault();const v=id=>$(id).value.trim(),miss=[];
     if(!d.value)miss.push("a date");if(!v("evName"))miss.push("your name");if(!/^\S+@\S+\.\S+$/.test(v("evEmail")))miss.push("a valid email");
     if(miss.length){$("evErr").textContent="Please add "+miss.join(", ")+".";$("evErr").hidden=false;return;}
-    $("evErr").hidden=true;const date=new Date(d.value+"T12:00").toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});
-    $("evSummary").textContent=[`Buyout:   ${f.querySelector("input[name=type]:checked").value}`,`Date:     ${date}`,`Guests:   ${g.value}`,`Name:     ${v("evName")}`,v("evCompany")&&`Company:  ${v("evCompany")}`,`Email:    ${v("evEmail")}`,v("evPhone")&&`Phone:    ${v("evPhone")}`,v("evNotes")&&`Notes:    ${v("evNotes")}`].filter(Boolean).join("\n");
-    $("evSent").hidden=false;});}
+    $("evErr").hidden=true;
+    if($("evHoney").value) return; // spam bot
+    const occasion=f.querySelector("input[name=type]:checked").value;
+    const date=new Date(d.value+"T12:00").toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});
+    const lines=[`Occasion: ${occasion}`,`Date:     ${date}`,`Guests:   ${g.value}`,`Name:     ${v("evName")}`,v("evCompany")&&`Company:  ${v("evCompany")}`,`Email:    ${v("evEmail")}`,v("evPhone")&&`Phone:    ${v("evPhone")}`,v("evNotes")&&`Notes:    ${v("evNotes")}`].filter(Boolean);
+    btn.disabled=true;btn.textContent="Sending…";
+    try{
+      const r=await fetch("https://formsubmit.co/ajax/"+INQUIRY_EMAIL,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+        body:JSON.stringify({_subject:`Event inquiry: ${occasion}, ${date}, ${g.value} guests`,_template:"table",_replyto:v("evEmail"),
+          "Occasion":occasion,"Date":date,"Guests":g.value,"Name":v("evName"),"Company":v("evCompany")||"—","Email":v("evEmail"),"Phone":v("evPhone")||"—","Notes":v("evNotes")||"—"})});
+      const j=await r.json().catch(()=>({}));
+      if(!r.ok||j.success===false||j.success==="false") throw new Error(j.message||"send failed");
+      $("evSentTitle").textContent="Inquiry sent";
+      $("evSentMsg").textContent=`Thank you, ${v("evName").split(" ")[0]}. Our events team will reply to ${v("evEmail")} within one business day.`;
+      $("evSummary").textContent=lines.join("\n");$("evSent").hidden=false;
+      f.querySelectorAll("input:not([type=radio]):not(#evGuests),textarea").forEach(el=>el.value="");
+    }catch(err){
+      $("evErr").textContent="We couldn't send your inquiry just now. Please try again, or call us at (818) 422-8088.";$("evErr").hidden=false;
+    }finally{btn.disabled=false;btn.textContent="Send inquiry";}
+  });}
 $("copyPhone").addEventListener("click",function(){const b=this;navigator.clipboard.writeText("(818) 422-8088").then(()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1600);}).catch(()=>{const r=document.createRange();r.selectNodeContents($("phoneNum"));const s=getSelection();s.removeAllRanges();s.addRange(r);});});
 
 /* Slow ink smoke behind the logo */
