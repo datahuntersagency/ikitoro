@@ -738,13 +738,14 @@ function setupForm(){const f=$("inq"),g=$("evGuests"),d=$("evDate"),btn=$("evSub
         body:JSON.stringify({_subject:`Event inquiry: ${occasion}, ${date}, ${g.value} guests`,_template:"table",_replyto:v("evEmail"),
           "Occasion":occasion,"Date":date,"Guests":g.value,"Name":v("evName"),"Company":v("evCompany")||"—","Email":v("evEmail"),"Phone":v("evPhone")||"—","Notes":v("evNotes")||"—"})});
       const j=await r.json().catch(()=>({}));
-      if(!r.ok||j.success===false||j.success==="false") throw new Error(j.message||"send failed");
+      if(!r.ok||j.success===false||j.success==="false"){const m=j.message||("HTTP "+r.status);console.warn("[Iki Toro inquiry] not delivered:",m);throw new Error(m);}
       $("evSentTitle").textContent="Inquiry sent";
       $("evSentMsg").textContent=`Thank you, ${v("evName").split(" ")[0]}. Our events team will reply to ${v("evEmail")} within one business day.`;
       $("evSummary").textContent=lines.join("\n");$("evSent").hidden=false;
       f.querySelectorAll("input:not([type=radio]):not(#evGuests),textarea").forEach(el=>el.value="");
     }catch(err){
-      $("evErr").textContent="We couldn't send your inquiry just now. Please try again, or call us at (818) 422-8088.";$("evErr").hidden=false;
+      console.warn("[Iki Toro inquiry] error:",err&&err.message);
+      $("evErr").textContent=/activat/i.test(err&&err.message||"")?"Our inquiry form is being set up. Please call us at (818) 422-8088 and we'll take your details by phone.":"We couldn't send your inquiry just now. Please try again, or call us at (818) 422-8088.";$("evErr").hidden=false;
     }finally{btn.disabled=false;btn.textContent="Send inquiry";}
   });}
 $("copyPhone").addEventListener("click",function(){const b=this;navigator.clipboard.writeText("(818) 422-8088").then(()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1600);}).catch(()=>{const r=document.createRange();r.selectNodeContents($("phoneNum"));const s=getSelection();s.removeAllRanges();s.addRange(r);});});
