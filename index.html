@@ -720,24 +720,23 @@ function updateRail(){const r=$("feedGrid"),max=r.scrollWidth-r.clientWidth;
   r.addEventListener("click",e=>{if(moved){e.preventDefault();moved=false;}},true);
 })();
 
-/* Events inquiry: a regular form POST to FormSubmit (emails the events team),
-   sent into a hidden frame so the guest stays on the page. A plain form post is
-   not subject to CORS and passes FormSubmit's bot protection as a real browser. */
+/* Events inquiry: FormSubmit's standard flow. The form posts to FormSubmit in the
+   same tab (a real top-level browser request, so its bot check passes), FormSubmit
+   emails the events team, then redirects back here with ?inquiry=sent. */
 const INQUIRY_ACTION="https://formsubmit.co/yervand@ikitoro.com";
-function postInquiry(fields){
-  return new Promise(resolve=>{
-    const name="inqFrame"+Date.now();
-    const fr=document.createElement("iframe");fr.name=name;fr.title="Inquiry delivery";fr.hidden=true;fr.setAttribute("aria-hidden","true");
-    const fm=document.createElement("form");fm.method="POST";fm.action=INQUIRY_ACTION;fm.target=name;fm.acceptCharset="UTF-8";fm.hidden=true;
-    for(const [k,v] of Object.entries(fields)){const i=document.createElement("input");i.type="hidden";i.name=k;i.value=v;fm.appendChild(i);}
-    let done=false;const finish=()=>{if(done)return;done=true;setTimeout(()=>{fr.remove();fm.remove();},4000);resolve();};
-    fr.addEventListener("load",()=>{if(fm.dataset.sent)finish();});
-    document.body.append(fr,fm);fm.dataset.sent="1";fm.submit();setTimeout(finish,8000);
-  });
+function showInquirySent(){
+  let d=null;try{d=JSON.parse(sessionStorage.getItem("ikiInquiry")||"null");sessionStorage.removeItem("ikiInquiry");}catch(e){}
+  $("evSentTitle").textContent="Inquiry sent";
+  $("evSentMsg").textContent=d?`Thank you, ${d.first}. Our events team will reply to ${d.email} within one business day.`:"Thank you. Our events team will reply within one business day.";
+  $("evSummary").textContent=d?d.lines.join("\n"):"";$("evSummary").hidden=!d;
+  $("evSent").hidden=false;
+  try{history.replaceState(null,"",location.pathname+"#private");}catch(e){}
+  setTimeout(()=>$("evSent").scrollIntoView({block:"center"}),60);
 }
 function setupForm(){const f=$("inq"),g=$("evGuests"),d=$("evDate"),btn=$("evSubmit");d.min=new Date().toISOString().slice(0,10);
   f.querySelectorAll("[data-step]").forEach(b=>b.addEventListener("click",()=>{g.value=Math.min(300,Math.max(8,(+g.value||8)+ +b.dataset.step));}));
-  f.addEventListener("submit",async e=>{e.preventDefault();const v=id=>$(id).value.trim(),miss=[];
+  if(new URLSearchParams(location.search).get("inquiry")==="sent") showInquirySent();
+  f.addEventListener("submit",e=>{e.preventDefault();const v=id=>$(id).value.trim(),miss=[];
     if(!d.value)miss.push("a date");if(!v("evName"))miss.push("your name");if(!/^\S+@\S+\.\S+$/.test(v("evEmail")))miss.push("a valid email");
     if(miss.length){$("evErr").textContent="Please add "+miss.join(", ")+".";$("evErr").hidden=false;return;}
     $("evErr").hidden=true;
@@ -745,15 +744,17 @@ function setupForm(){const f=$("inq"),g=$("evGuests"),d=$("evDate"),btn=$("evSub
     const occasion=f.querySelector("input[name=type]:checked").value;
     const date=new Date(d.value+"T12:00").toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});
     const lines=[`Occasion: ${occasion}`,`Date:     ${date}`,`Guests:   ${g.value}`,`Name:     ${v("evName")}`,v("evCompany")&&`Company:  ${v("evCompany")}`,`Email:    ${v("evEmail")}`,v("evPhone")&&`Phone:    ${v("evPhone")}`,v("evNotes")&&`Notes:    ${v("evNotes")}`].filter(Boolean);
+    try{sessionStorage.setItem("ikiInquiry",JSON.stringify({first:v("evName").split(" ")[0],email:v("evEmail"),lines}));}catch(e){}
+    const fields={_subject:`Event inquiry: ${occasion}, ${date}, ${g.value} guests`,_template:"table",_captcha:"false",_replyto:v("evEmail"),
+      _next:location.origin+location.pathname+"?inquiry=sent#private",
+      "Occasion":occasion,"Date":date,"Guests":g.value,"Name":v("evName"),"Company":v("evCompany")||"—","Email":v("evEmail"),"Phone":v("evPhone")||"—","Notes":v("evNotes")||"—"};
+    const fm=document.createElement("form");fm.method="POST";fm.action=INQUIRY_ACTION;fm.acceptCharset="UTF-8";fm.hidden=true;
+    for(const [k,val] of Object.entries(fields)){const i=document.createElement("input");i.type="hidden";i.name=k;i.value=val;fm.appendChild(i);}
     btn.disabled=true;btn.textContent="Sending…";
-    await postInquiry({_subject:`Event inquiry: ${occasion}, ${date}, ${g.value} guests`,_template:"table",_captcha:"false",_replyto:v("evEmail"),
-      "Occasion":occasion,"Date":date,"Guests":g.value,"Name":v("evName"),"Company":v("evCompany")||"—","Email":v("evEmail"),"Phone":v("evPhone")||"—","Notes":v("evNotes")||"—"});
-    $("evSentTitle").textContent="Inquiry sent";
-    $("evSentMsg").textContent=`Thank you, ${v("evName").split(" ")[0]}. Our events team will reply to ${v("evEmail")} within one business day.`;
-    $("evSummary").textContent=lines.join("\n");$("evSent").hidden=false;
-    f.querySelectorAll("input:not([type=radio]):not(#evGuests),textarea").forEach(el=>el.value="");
-    btn.disabled=false;btn.textContent="Send inquiry";
-  });}
+    document.body.appendChild(fm);fm.submit();
+  });
+  addEventListener("pageshow",ev=>{if(ev.persisted){btn.disabled=false;btn.textContent="Send inquiry";}});
+}
 $("copyPhone").addEventListener("click",function(){const b=this;navigator.clipboard.writeText("(818) 422-8088").then(()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1600);}).catch(()=>{const r=document.createRange();r.selectNodeContents($("phoneNum"));const s=getSelection();s.removeAllRanges();s.addRange(r);});});
 
 /* Slow ink smoke behind the logo */
