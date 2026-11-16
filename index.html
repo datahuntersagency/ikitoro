@@ -95,14 +95,6 @@ header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
 @keyframes fade{from{transform:translateY(10px);filter:blur(4px)}to{transform:none;filter:none}}
 @media (prefers-reduced-motion: reduce){.fade{animation:none}}
 
-.laurel{display:inline-flex;align-items:center;gap:14px;font-family:var(--f-display);font-style:italic;font-weight:300;font-size:17px;color:var(--gold-hi);text-decoration:none;margin-top:-14px}
-.laurel .lw{font-style:normal;color:var(--gold);font-size:14px}
-.laurel .lw.r{transform:scaleX(-1)}
-.award{margin:18px 0 0;display:flex;flex-direction:column;gap:16px;max-width:190px}
-.award img{width:100%;height:auto;display:block;border:1px solid var(--hair);box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 40px rgba(200,161,90,.08)}
-.award figcaption{font-family:var(--f-display);font-weight:300;font-size:17px;line-height:1.35;color:var(--washi)}
-.award figcaption span{font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ash);line-height:1.8}
-@media (max-width:860px){.award{flex-direction:row;max-width:none;align-items:center;gap:20px}.award img{width:120px;flex:none}}
 /* TIMES */
 .times{display:grid;grid-template-columns:repeat(3,1fr)}
 .times a{display:flex;flex-direction:column;gap:6px;padding:34px 0;text-decoration:none;text-align:center;transition:background .5s}
@@ -366,7 +358,6 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
       <div class="hero-c">
         <div class="hero-logo fade"><img src="/assets/iki-toro-logo.webp" alt="Iki Toro logo: a golden koi above the words Iki Toro on a red ink circle"></div>
         <p class="sub fade d1">Japanese fine dining · Glendale</p>
-        <a class="laurel fade d1" href="#philosophy"><span class="lw" aria-hidden="true">❦</span>Ranked No. 1 in Glendale · BusinessRate 2026<span class="lw r" aria-hidden="true">❦</span></a>
         <h1 class="fade d2">Pristine fish, open flame, and a cellar of rare Japanese spirits.</h1>
         <div class="fade d3" style="display:flex;flex-direction:column;align-items:center;gap:26px">
           <span class="status" aria-live="polite"><span class="dot" id="dot"></span><span id="statusText">—</span></span>
@@ -387,8 +378,7 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
 
   <section id="philosophy">
     <div class="wrap intro">
-      <div class="k"><span class="kicker">The house</span><span class="jp" aria-hidden="true">粋</span>
-        <figure class="award"><img src="/assets/businessrate-2026.webp" alt="BusinessRate award: Ranked number 1, June 2026 award winner, Iki Toro Japanese Restaurant, Glendale, California, powered by Google Reviews" width="251" height="378"><figcaption>Ranked No. 1 Japanese restaurant in Glendale<br><span>BusinessRate · June 2026 · from Google reviews</span></figcaption></figure></div>
+      <div class="k"><span class="kicker">The house</span><span class="jp" aria-hidden="true">粋</span></div>
       <div class="body">
         <p class="lead"><em style="color:var(--gold-hi)">Iki</em> is the Japanese ideal of refinement without excess. Nothing on the plate that does not need to be there, nothing in the room that distracts from it.</p>
         <p>Our fish is flown in daily and cut to order at the counter. Our robata is fed with charcoal and patience. Behind the bar sits one of Southern California's deepest collections of Japanese whisky and sake, poured by people who know every bottle by name.</p>

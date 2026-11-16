@@ -3,7 +3,6 @@
 Static site for Iki Toro, Japanese fine dining at 120 S Brand Blvd, Glendale.
 
 - `index.html` — the whole site (HTML, CSS and JS in one file)
-- `assets/` — logo, favicon and BusinessRate 2026 award badge
 
 ## Instagram
 The Journal slider loads the latest posts and reels from the Behold feed set in
