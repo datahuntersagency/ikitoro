@@ -119,7 +119,7 @@ section{padding-block:clamp(96px,13vw,180px)}
 
 /* SUNSET OMAKASE (omakase-style prix fixe) */
 .sunset{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--sumi) 0%,#140C0A 38%,#2A120B 62%,var(--amber) 76%,#1A0B07 76.2%,#0E0807 100%);border-block:1px solid var(--hair)}
-.sunset .sun{position:absolute;left:50%;top:var(--sun-y,46%);width:min(34vw,360px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle at 50% 45%,#B3171C 0%,var(--beni) 62%,#5E070A 100%);box-shadow:0 0 120px 30px rgba(139,10,15,.35),0 0 300px 80px rgba(90,42,16,.35);transition:top 1.6s cubic-bezier(.2,.7,.2,1);pointer-events:none;max-width:90%}
+.sunset .sun{position:absolute;left:50%;top:var(--sun-y,46%);width:min(36vw,380px);aspect-ratio:893/900;transform:translate(-50%,-50%);background:url(/assets/sunset-sun.webp) center/contain no-repeat;filter:drop-shadow(0 0 60px rgba(139,10,15,.38));transition:top 1.6s cubic-bezier(.2,.6,.2,1);pointer-events:none;max-width:90%}
 .sunset .sea{position:absolute;left:0;right:0;top:76%;bottom:0;background:repeating-linear-gradient(180deg,transparent 0 9px,rgba(10,9,8,.55) 9px 12px);pointer-events:none;z-index:1}
 .sunset .sea::before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:min(30vw,300px);height:60%;background:linear-gradient(180deg,rgba(179,23,28,.55),transparent);filter:blur(6px)}
 .sunset .wrap{position:relative;z-index:2}
