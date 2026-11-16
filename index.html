@@ -245,6 +245,10 @@ section{padding-block:clamp(96px,13vw,180px)}
 .viewer-pages img{width:100%;height:auto;display:block;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.55)}
 .viewer-pages figcaption{font-family:var(--f-mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ash);text-align:center}
 @media (max-width:640px){.viewer-acts #viewerDl{display:none}}
+.order-band{margin-top:clamp(40px,5vw,64px);border:1px solid var(--hair);padding:clamp(24px,3vw,36px) clamp(22px,3vw,40px);display:grid;grid-template-columns:auto 1fr auto;gap:clamp(18px,3vw,48px);align-items:center;background:var(--lacquer)}
+.order-band>div{display:flex;flex-direction:column;gap:10px}
+.order-band p{color:var(--ash);max-width:40ch}
+@media (max-width:760px){.order-band{grid-template-columns:1fr}}
 /* LUNCH */
 .lunch{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:center}
 .lunch .big{grid-column:1/6;font-family:var(--f-display);font-weight:200;font-size:clamp(110px,16vw,230px);line-height:.8;color:var(--gold-hi);font-variant-numeric:lining-nums;display:flex;align-items:flex-start;gap:14px}
@@ -345,9 +349,9 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
   <div class="wrap nav-in">
     <nav class="nav-l" aria-label="Primary"><a class="t" href="#sunset">Sunset Omakase</a><a class="t" href="#menus">Menus</a><a class="t" href="#cellar">The Cellar</a></nav>
     <a class="nav-logo" href="#top" aria-label="Iki Toro"><img src="/assets/iki-toro-logo.webp" alt="Iki Toro"></a>
-    <div class="nav-r"><a class="t" href="#private">Events</a><a class="t" href="#journal">Journal</a><a class="btn" href="#visit">Reserve</a></div>
+    <div class="nav-r"><a class="t" href="#private">Events</a><a class="t" href="#journal">Journal</a><a class="t" href="https://order.ikitoro.com/" target="_blank" rel="noopener">Order online</a><a class="btn" href="#visit">Reserve</a></div>
   </div>
-  <div class="nav-m"><div class="wrap"><a href="#sunset">Omakase</a><a href="#menus">Menus</a><a href="#cellar">Cellar</a><a href="#cuisine">Cuisine</a><a href="#lunch">Lunch</a><a href="#private">Events</a><a href="#journal">Journal</a><a href="#visit">Visit</a></div></div>
+  <div class="nav-m"><div class="wrap"><a href="#sunset">Omakase</a><a href="#menus">Menus</a><a href="https://order.ikitoro.com/" target="_blank" rel="noopener">Order online</a><a href="#cellar">Cellar</a><a href="#cuisine">Cuisine</a><a href="#lunch">Lunch</a><a href="#private">Events</a><a href="#journal">Journal</a><a href="#visit">Visit</a></div></div>
 </header>
 
 <main id="top">
@@ -361,7 +365,7 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
         <h1 class="fade d2">Pristine fish, open flame, and a cellar of rare Japanese spirits.</h1>
         <div class="fade d3" style="display:flex;flex-direction:column;align-items:center;gap:26px">
           <span class="status" aria-live="polite"><span class="dot" id="dot"></span><span id="statusText">—</span></span>
-          <div class="row" style="justify-content:center"><a class="btn" href="#visit">Reserve a table</a><a class="btn quiet" href="#sunset">Sunset Omakase</a></div>
+          <div class="row" style="justify-content:center"><a class="btn" href="#visit">Reserve a table</a><a class="btn quiet" href="https://order.ikitoro.com/" target="_blank" rel="noopener">Order online</a><a class="btn quiet" href="#sunset">Sunset Omakase</a></div>
         </div>
       </div>
       <span class="vert r" aria-hidden="true">粋 · 大とろ</span>
@@ -467,7 +471,7 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
         <div class="cu"><span class="jp">特選</span><h3>Signatures</h3><p>The dishes our regulars order before they sit down.</p>
           <ul><li><span>Iki Toro Imperial Roll with caviar</span><span class="lead"></span><span class="p">46</span></li><li><span>Toro sashimi · 5 pieces</span><span class="lead"></span><span class="p">48</span></li><li><span>Salmon caviar crudo</span><span class="lead"></span><span class="p">35</span></li><li><span>Zesty bluefin tuna roll</span><span class="lead"></span><span class="p">27</span></li><li><span>Matcha tiramisu</span><span class="lead"></span><span class="p">16</span></li></ul></div>
       </div>
-      <div class="row" style="justify-content:flex-end;margin-top:48px"><a class="btn quiet" href="#menus">View all menus</a><a class="btn" href="#menu-food" data-open-menu="food">Food menu</a></div>
+      <div class="row" style="justify-content:flex-end;margin-top:48px"><a class="btn quiet" href="#menus">View all menus</a><a class="btn quiet" href="https://order.ikitoro.com/" target="_blank" rel="noopener">Order online</a><a class="btn" href="#menu-food" data-open-menu="food">Food menu</a></div>
     </div>
   </section>
 
@@ -478,6 +482,7 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
         <p>Our four menus, exactly as they are printed at the table. Open any menu to read it here, or download the PDF.</p>
       </div>
       <div class="menu-grid" id="menuGrid"></div>
+      <div class="order-band"><div><span class="kicker">Order online · 持ち帰り</span><h3>Iki Toro, <em>at home.</em></h3></div><p>Sushi, rolls and robata from our kitchen, ordered online.</p><a class="btn" href="https://order.ikitoro.com/" target="_blank" rel="noopener">Order online</a></div>
     </div>
   </section>
 
@@ -576,7 +581,7 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
         <div class="visit-a">
           <p class="addr">120 South Brand Boulevard<br>Glendale, California 91204</p>
           <div class="phone"><span class="num" id="phoneNum">(818) 422-8088</span><button class="linkbtn" id="copyPhone" type="button">Copy</button><a class="linkbtn" href="tel:+18184228088">Call</a></div>
-          <div class="row"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Iki+Toro+120+S+Brand+Blvd+Glendale+CA" target="_blank" rel="noopener">Directions</a><a class="btn quiet" href="https://order.ikitoro.com" target="_blank" rel="noopener">Order online</a></div>
+          <div class="row"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Iki+Toro+120+S+Brand+Blvd+Glendale+CA" target="_blank" rel="noopener">Directions</a><a class="btn quiet" href="https://order.ikitoro.com/" target="_blank" rel="noopener">Order online</a></div>
         </div>
         <table class="hours" id="hours"><caption class="kicker">Hours</caption><tbody></tbody></table>
       </div>
@@ -592,6 +597,7 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
       <a href="https://www.instagram.com/ikitoro_/" target="_blank" rel="noopener">Instagram</a>
       <a href="https://www.facebook.com/profile.php?id=61586498823771" target="_blank" rel="noopener">Facebook</a>
       <a href="#private">Events</a>
+      <a href="https://order.ikitoro.com/" target="_blank" rel="noopener">Order online</a>
       <a href="https://ikitoro.com/blogs/" target="_blank" rel="noopener">Journal</a>
       <span>© 2026 Iki Toro</span>
     </div>
