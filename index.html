@@ -2,9 +2,9 @@
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Iki Toro — Japanese fine dining in Glendale. Sunset Omakase daily 5–6 pm, weekend lunch from noon, a cellar of rare Japanese whisky and sake, and full-buyout events.">
+<meta name="description" content="Iki Toro — Japanese fine dining in Glendale. Sunset Omakase, a $70 omakase-style prix fixe, daily 5–6 pm, weekend lunch from noon, a cellar of rare Japanese whisky and sake, and full-buyout events.">
 <meta property="og:title" content="Iki Toro — Japanese Fine Dining, Glendale">
-<meta property="og:description" content="Sushi, robata and a cellar of rare Japanese whisky and sake. Sunset Omakase daily 5–6 pm.">
+<meta property="og:description" content="Sushi, robata and a cellar of rare Japanese whisky and sake. Sunset Omakase, a $70 omakase-style prix fixe, daily 5–6 pm.">
 <meta property="og:image" content="/assets/iki-toro-logo.webp">
 <link rel="icon" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
@@ -125,7 +125,7 @@ section{padding-block:clamp(96px,13vw,180px)}
 .facts span{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ash);line-height:1.6}
 @media (max-width:860px){.intro .k,.intro .body{grid-column:1/-1}.facts{grid-template-columns:1fr 1fr;row-gap:24px}}
 
-/* SUNSET OMAKASE */
+/* SUNSET OMAKASE (omakase-style prix fixe) */
 .sunset{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--sumi) 0%,#140C0A 38%,#2A120B 62%,var(--amber) 76%,#1A0B07 76.2%,#0E0807 100%);border-block:1px solid var(--hair)}
 .sunset .sun{position:absolute;left:50%;top:var(--sun-y,46%);width:min(34vw,360px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle at 50% 45%,#B3171C 0%,var(--beni) 62%,#5E070A 100%);box-shadow:0 0 120px 30px rgba(139,10,15,.35),0 0 300px 80px rgba(90,42,16,.35);transition:top 1.6s cubic-bezier(.2,.7,.2,1);pointer-events:none;max-width:90%}
 .sunset .sea{position:absolute;left:0;right:0;top:76%;bottom:0;background:repeating-linear-gradient(180deg,transparent 0 9px,rgba(10,9,8,.55) 9px 12px);pointer-events:none;z-index:1}
@@ -145,6 +145,18 @@ section{padding-block:clamp(96px,13vw,180px)}
 .courses .jp{font-size:20px;color:var(--gold)}
 .courses b{font-family:var(--f-display);font-weight:300;font-size:20px;display:block;line-height:1.3}
 .courses small{font-size:13.5px;color:var(--ash)}
+.pf-tag{font-family:var(--f-mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-hi);border:1px solid rgba(200,161,90,.55);padding:9px 16px;margin-top:-4px}
+@media (min-width:861px){.sun-card .l{position:sticky;top:130px;align-self:start}}
+.pf-price{display:flex;align-items:center;gap:16px}
+.pf-price b{font-family:var(--f-display);font-weight:200;font-size:clamp(56px,6vw,76px);line-height:.9;color:var(--gold-hi);font-variant-numeric:lining-nums}
+.pf-price span{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ash);line-height:1.8}
+.courses.pf li{align-items:start}
+.courses.pf>li>.jp{padding-top:4px}
+.courses .pick{display:block;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:4px 0 10px}
+.courses .opts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.courses .opts li{display:block;padding:0;border:0}
+.courses .opts .d{display:block;font-size:15.5px;color:var(--washi);line-height:1.4}
+.courses .opts small{display:block;font-size:13px;line-height:1.5}
 .courses-note{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ash);margin-top:14px}
 .tracker{border-top:1px solid var(--hair);padding-top:22px;margin-top:6px}
 .tracker-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;font-variant-numeric:tabular-nums}
@@ -339,11 +351,11 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
 
 <header class="nav">
   <div class="wrap nav-in">
-    <nav class="nav-l" aria-label="Primary"><a class="t" href="#omakase">Sunset Omakase</a><a class="t" href="#menus">Menus</a><a class="t" href="#cellar">The Cellar</a></nav>
+    <nav class="nav-l" aria-label="Primary"><a class="t" href="#sunset">Sunset Omakase</a><a class="t" href="#menus">Menus</a><a class="t" href="#cellar">The Cellar</a></nav>
     <a class="nav-logo" href="#top" aria-label="Iki Toro"><img src="/assets/iki-toro-logo.webp" alt="Iki Toro"></a>
     <div class="nav-r"><a class="t" href="#private">Events</a><a class="t" href="#journal">Journal</a><a class="btn" href="#visit">Reserve</a></div>
   </div>
-  <div class="nav-m"><div class="wrap"><a href="#omakase">Omakase</a><a href="#menus">Menus</a><a href="#cellar">Cellar</a><a href="#cuisine">Cuisine</a><a href="#lunch">Lunch</a><a href="#private">Events</a><a href="#journal">Journal</a><a href="#visit">Visit</a></div></div>
+  <div class="nav-m"><div class="wrap"><a href="#sunset">Omakase</a><a href="#menus">Menus</a><a href="#cellar">Cellar</a><a href="#cuisine">Cuisine</a><a href="#lunch">Lunch</a><a href="#private">Events</a><a href="#journal">Journal</a><a href="#visit">Visit</a></div></div>
 </header>
 
 <main id="top">
@@ -358,7 +370,7 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
         <h1 class="fade d2">Pristine fish, open flame, and a cellar of rare Japanese spirits.</h1>
         <div class="fade d3" style="display:flex;flex-direction:column;align-items:center;gap:26px">
           <span class="status" aria-live="polite"><span class="dot" id="dot"></span><span id="statusText">—</span></span>
-          <div class="row" style="justify-content:center"><a class="btn" href="#visit">Reserve a table</a><a class="btn quiet" href="#omakase">Sunset Omakase</a></div>
+          <div class="row" style="justify-content:center"><a class="btn" href="#visit">Reserve a table</a><a class="btn quiet" href="#sunset">Sunset Omakase</a></div>
         </div>
       </div>
       <span class="vert r" aria-hidden="true">粋 · 大とろ</span>
@@ -367,7 +379,7 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
 
   <div class="wrap">
     <div class="times">
-      <a href="#omakase"><span class="t">5 — 6 pm</span><span class="d">Sunset Omakase · daily</span></a>
+      <a href="#sunset"><span class="t">5 — 6 pm</span><span class="d">Sunset Omakase · $70 prix fixe · daily</span></a>
       <a href="#lunch"><span class="t">From 12 pm</span><span class="d">Saturday &amp; Sunday lunch</span></a>
       <a href="#private"><span class="t">Events</span><span class="d">Corporate &amp; full buyout</span></a>
     </div>
@@ -391,39 +403,34 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
     </div>
   </section>
 
-  <section class="sunset" id="omakase">
+  <section class="sunset" id="sunset">
     <div class="sun" aria-hidden="true"></div>
     <div class="sea" aria-hidden="true"></div>
     <div class="wrap">
       <div class="sun-head">
         <span class="jp">夕暮れのおまかせ</span>
         <h2>Sunset <em>Omakase</em></h2>
-        <p>One hour, every evening, as the sun goes down. You take a seat at the counter, leave the choices to the chef, and the evening unfolds piece by piece.</p>
+        <span class="pf-tag">Omakase-style prix fixe · $70</span>
+        <p>Five courses, served every evening from 5 to 6 pm as the sun goes down. Unlike a traditional omakase, you choose one dish from each course.</p>
       </div>
       <div class="sun-grid">
         <div class="sun-card">
           <div class="l">
             <span class="kicker">Daily · 5:00 to 6:00 pm</span>
-            <h3>The chef decides. <em>You simply arrive.</em></h3>
-            <p>The menu follows the morning's catch and the season. Seating is limited to the counter, so every guest is served directly by the chef.</p>
-            <p>Ask about a sake or Japanese whisky pairing from the cellar, or a premium sake flight. Please share allergies when you book.</p>
+            <div class="pf-price"><b>$70</b><span>per guest<br>five courses</span></div>
+            <h3>The spirit of omakase, <em>with your choice in every course.</em></h3>
+            <p>A prix fixe in the omakase style: five courses from the counter and the robata, with one dish chosen by you in each. For a traditional omakase where the chef decides everything, see the omakase sets on our <a href="#menu-food" data-open-menu="food" style="color:var(--gold-hi)">food menu</a>.</p>
+            <p>Ask about a sake or Japanese whisky pairing from the cellar. Please share allergies when you book. Tax and gratuity not included.</p>
             <div class="tracker" aria-live="polite">
               <div class="tracker-top"><b id="sunState">—</b><span id="sunClock">—</span></div>
               <div class="bar" aria-hidden="true"><i id="sunFill"></i><s id="sunKnob"></s></div>
               <div class="ticks"><span>5:00</span><span>5:15</span><span>5:30</span><span>5:45</span><span>6:00</span></div>
             </div>
-            <div><a class="btn" href="#visit">Reserve the counter</a></div>
+            <div><a class="btn" href="#visit">Reserve Sunset Omakase</a></div>
           </div>
           <div>
-            <ol class="courses">
-              <li><span class="jp">先</span><div><b>Sakizuke</b><small>A first bite: yellowtail crudo, orange, citrus soy</small></div></li>
-              <li><span class="jp">刺</span><div><b>Sashimi</b><small>Madai and kanpachi, fresh wasabi</small></div></li>
-              <li><span class="jp">握</span><div><b>Nigiri</b><small>Hokkaido scallop, hamachi toro, akami</small></div></li>
-              <li><span class="jp">極</span><div><b>Toro</b><small>Bluefin belly, the height of the hour</small></div></li>
-              <li><span class="jp">炉</span><div><b>Robata</b><small>Chilean seabass from the charcoal</small></div></li>
-              <li><span class="jp">甘</span><div><b>Kanmi</b><small>Yuzu crème brûlée</small></div></li>
-            </ol>
-            <p class="courses-note">A recent progression · changes nightly</p>
+            <ol class="courses pf"><li><span class="jp">先</span><div><b>To Begin</b><span class="pick">Choice of one</span><ul class="opts"><li><span class="d">Miso Soup</span><small>Dashi broth, fermented miso, scallions, silken tofu</small></li><li><span class="d">Shishito Peppers</span><small>Blistered, sea salt, a touch of dashi soy</small></li></ul></div></li><li><span class="jp">前</span><div><b>Small Plates</b><span class="pick">Choice of one</span><ul class="opts"><li><span class="d">Edamame with Garlic Truffle</span><small>Soy, garlic, white truffle oil</small></li><li><span class="d">Albacore Crudo · 3 pcs</span><small>Korean pear, spiced onion crunch</small></li><li><span class="d">Spicy Tuna Crispy Rice</span><small>Crispy sushi rice cake, spicy tuna, avocado, serrano</small></li></ul></div></li><li><span class="jp">鮨</span><div><b>From the Sushi Counter</b><span class="pick">Choice of one</span><ul class="opts"><li><span class="d">Nigiri Selection · 5 pcs</span><small>Chef’s selection of daily market fish</small></li><li><span class="d">Specialty Roll</span><small>Zesty Bluefin Tuna Roll or Yellowtail Serrano Twist</small></li><li><span class="d">Sashimi Selection · 5 pcs</span><small>Chef’s premium cuts of daily market fish</small></li></ul></div></li><li><span class="jp">炉</span><div><b>From the Robata</b><span class="pick">Choice of one</span><ul class="opts"><li><span class="d">Chilean Sea Bass Skewer</span><small>Sweet miso glaze, binchotan-charred</small></li><li><span class="d">Skirt Steak Robata</span><small>House tare reduction, Maldon salt, kizami</small></li><li><span class="d">Okra & Button Mushroom Duo</span><small>Sweet soy reduction · vegetarian</small></li></ul></div></li><li><span class="jp">甘</span><div><b>To Finish</b><span class="pick">Choice of one</span><ul class="opts"><li><span class="d">Monaca Ice Cream Sandwich</span><small>Ube, green tea or vanilla</small></li><li><span class="d">Yuzu Crème Brûlée</span><small>Torched caramelized sugar, citrus custard</small></li></ul></div></li></ol>
+            <p class="courses-note">Omakase-style prix fixe · $70 per guest · one choice per course</p>
           </div>
         </div>
       </div>
@@ -573,7 +580,7 @@ footer{border-top:1px solid var(--hair);padding-block:72px calc(56px + env(safe-
     <div class="wrap">
       <div class="head2">
         <div class="t"><span class="kicker">Reservations · 予約</span><h2>Your table <em>awaits.</em></h2></div>
-        <p>Reservations are recommended for dinner and required for Sunset Omakase. For a full buyout of the restaurant, please use the events inquiry.</p>
+        <p>Reservations are recommended for dinner and Sunset Omakase. For a full buyout of the restaurant, please use the events inquiry.</p>
       </div>
       <div class="visit-grid">
         <div class="visit-a">
@@ -613,7 +620,7 @@ function laNow(){const p=new Intl.DateTimeFormat("en-US",{timeZone:"America/Los_
 function nextOpen(day){for(let i=1;i<=7;i++){const d=(day+i)%7;if(HOURS[d])return{d,i};}}
 function renderHours(){const{day}=laNow();
   document.querySelector("#hours tbody").innerHTML=[2,3,4,5,6,0,1].map(d=>{const h=HOURS[d],w=d===0||d===6;return `<tr class="${d===day?"today":""}"><td>${DAYS[d]}${w?'<span class="tagx">Lunch</span>':""}</td><td>${h?fmt(h[0])+" — "+fmt(h[1]):"Closed"}</td></tr>`}).join("")
-  +`<tr class="note"><td colspan="2">Sunset Omakase is served from 5 to 6 pm every evening we are open.</td></tr>`;}
+  +`<tr class="note"><td colspan="2">Sunset Omakase, our $70 five-course omakase-style prix fixe, is served from 5 to 6 pm every evening we are open.</td></tr>`;}
 function renderStatus(){const{day,mins}=laNow(),h=HOURS[day];
   if(h&&mins>=h[0]&&mins<h[1]){$("dot").classList.add("on");$("statusText").textContent=(mins>=1020&&mins<1080)?"Open now · Sunset Omakase until 6 pm":`Open this evening until ${fmt(h[1])}`;}
   else{$("dot").classList.remove("on");if(h&&mins<h[0])$("statusText").textContent=`Opens today at ${fmt(h[0])}`;else{const n=nextOpen(day);$("statusText").textContent=`Opens ${n.i===1?"tomorrow":DAYS[n.d]} at ${fmt(HOURS[n.d][0])}`;}}}
